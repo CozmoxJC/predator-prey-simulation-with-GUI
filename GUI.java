@@ -839,26 +839,5 @@ public class GUI extends JFrame
             longstep_butt.setEnabled(true);
         }
     }      
-    //private class ResetbuttHandler implements ActionListener{
-    //    public void actionPerformed(ActionEvent e){
-    //        Simulator reseting = new Simulator();
-    //        reseting.reset();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
-    //                         //Cannot invoke "java.util.List.clear()" because "this.animals" is null
-    //    }
-    //}   
-    //private class NextstepbuttHandler implements ActionListener{
-    //    public void actionPerformed(ActionEvent e){
-    //        Simulator onestep = new Simulator();
-    //        onestep.simulateOneStep();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
-    //                                  //Cannot invoke "java.util.List.iterator()" because "this.animals" is null
-    //    }
-    //}
-    //private class LongstepbuttHandler implements ActionListener{
-    //    public void actionPerformed(ActionEvent e){
-    //        Simulator longstep = new Simulator();
-    //        longstep.runLongSimulation();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
-    //                                     //Cannot invoke "SimulatorView.isViable(Field)" because "this.view" is null
-    //    }
-    //}
 }
 
