@@ -11,7 +11,7 @@ import java.awt.Color;
  * @author Jeremy Chu
  * @version 2021.05.30
  */
-public class Simulator
+public class SimulatorFH
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
@@ -20,14 +20,8 @@ public class Simulator
     private static final int DEFAULT_DEPTH = 100;
     // The probability that a hunter will be created in any given grid position.
     private static final double HUNTER_CREATION_PROBABILITY = 0.05;
-    // The probability that a bear will be created in any given grid position.
-    private static final double BEAR_CREATION_PROBABILITY = 0.01;
-    // The probability that a wolf will be created in any given grid position.
-    private static final double WOLF_CREATION_PROBABILITY = 0.02;
     // The probability that a fox will be created in any given grid position.
     private static final double FOX_CREATION_PROBABILITY = 0.03;
-    // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
     
     
     // List of animals in the field.
@@ -42,9 +36,9 @@ public class Simulator
     /**
      * Construct a simulation field with default size.
      */
-    public void Simulator()
+    public void SimulatorFH()
     {
-        Simulator(100, 100);
+        SimulatorFH(100,100);
     }
     
     /**
@@ -52,7 +46,7 @@ public class Simulator
      * @param depth Depth of the field. Must be greater than zero.
      * @param width Width of the field. Must be greater than zero.
      */
-    public void Simulator(int depth, int width)
+    public void SimulatorFH(int depth, int width)
     {
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
@@ -66,10 +60,8 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.gray);
+
         view.setColor(Fox.class, Color.orange);
-        view.setColor(Wolf.class, Color.blue);
-        view.setColor(Bear.class, Color.red);
         view.setColor(Hunter.class, Color.black);
         
         // Setup a valid starting point.
@@ -100,7 +92,7 @@ public class Simulator
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
-     * predators and preys.
+     * hunter and fox.
      */
     public void simulateOneStep()
     {
@@ -117,7 +109,7 @@ public class Simulator
             }
         }
                
-        // Add the newly born wolves, foxes and rabbits to the main lists.
+        // Add the newly born hunters and foxes to the main lists.
         animals.addAll(newAnimals);
 
         view.showStatus(step, field);
@@ -137,7 +129,7 @@ public class Simulator
     }
     
     /**
-     * Randomly populate the field with wolves, foxes and rabbits.
+     * Randomly populate the field with hunters and foxes.
      */
     private void populate()
     {
@@ -150,25 +142,10 @@ public class Simulator
                     Hunter hunter = new Hunter(true, field, location);
                     animals.add(hunter);
                 }
-                else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Bear bear = new Bear(true, field, location);
-                    animals.add(bear);
-                }
-                else if(rand.nextDouble() <= WOLF_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Wolf wolf = new Wolf(true, field, location);
-                    animals.add(wolf);
-                }
                 else if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Fox fox = new Fox(true, field, location);
                     animals.add(fox);
-                }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
-                    animals.add(rabbit);
                 }
                 // else leave the location empty.
             }

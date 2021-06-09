@@ -68,8 +68,6 @@ public class FieldStats
     {
         Counter count = counters.get(animalClass);
         if(count == null) {
-            // We do not have a counter for this species yet.
-            // Create one.
             count = new Counter(animalClass.getName());
             counters.put(animalClass, count);
         }
@@ -106,8 +104,8 @@ public class FieldStats
     }
     
     /**
-     * Generate counts of the number of foxes and rabbits.
-     * These are not kept up to date as foxes and rabbits
+     * Generate counts of the number of predators and preys.
+     * These are not kept up to date as predators and preys
      * are placed in the field, but only when a request
      * is made for the information.
      * @param field The field to generate the stats for.

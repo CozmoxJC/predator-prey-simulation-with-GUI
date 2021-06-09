@@ -27,6 +27,7 @@ public class GUI extends JFrame
     private Simulator simulator;
     private Animal animal;
     private List<Animal> animals;
+    private FieldStats fieldstats;
     private Field field;
     private SimulatorView view;
     
@@ -154,15 +155,15 @@ public class GUI extends JFrame
         button.setEnabled(false);
         
         reset_butt = new JButton("Reset");
-        reset_butt.addActionListener(new ResetbuttHandler());
+        reset_butt.addActionListener(new SimulateOption());
         reset_butt.setEnabled(false);
         
         nextstep_butt = new JButton("Next step");
-        nextstep_butt.addActionListener(new NextstepbuttHandler());
+        nextstep_butt.addActionListener(new SimulateOption());
         nextstep_butt.setEnabled(false);
         
         longstep_butt = new JButton("Next hundred steps");
-        longstep_butt.addActionListener(new LongstepbuttHandler());
+        longstep_butt.addActionListener(new SimulateOption());
         longstep_butt.setEnabled(false);
         
         depthtxt = new JTextField();
@@ -382,137 +383,482 @@ public class GUI extends JFrame
             int width = Integer.parseInt(widthstr);
             switch(version) {
                 case 0:
-                    Simulator setsize = new Simulator();
-                    setsize.Simulator(depth,width);
+                    Simulator set = new Simulator();
+                    set.Simulator(depth,width);
                     break;
                 case 1:
-                    SimulatorRF setsizeRF = new SimulatorRF();
-                    setsizeRF.SimulatorRF(depth,width);
+                    SimulatorRF setRF = new SimulatorRF();
+                    setRF.SimulatorRF(depth,width);
                     break;
                 case 2:
-                    SimulatorRW setsizeRW = new SimulatorRW();
-                    setsizeRW.SimulatorRW(depth,width);
+                    SimulatorRW setRW = new SimulatorRW();
+                    setRW.SimulatorRW(depth,width);
                     break;
                 case 3:
-                    SimulatorRB setsizeRB = new SimulatorRB();
-                    setsizeRB.SimulatorRB(depth,width);
+                    SimulatorRB setRB = new SimulatorRB();
+                    setRB.SimulatorRB(depth,width);
                     break;
                 case 4:
-                    SimulatorRH setsizeRH = new SimulatorRH();
-                    setsizeRH.SimulatorRH(depth,width);
+                    SimulatorRH setRH = new SimulatorRH();
+                    setRH.SimulatorRH(depth,width);
                     break;
                 case 5:
-                    SimulatorFW setsizeFW = new SimulatorFW();
-                    setsizeFW.SimulatorFW(depth,width);
+                    SimulatorFW setFW = new SimulatorFW();
+                    setFW.SimulatorFW(depth,width);
                     break;
                 case 6:
-                    SimulatorFB setsizeFB = new SimulatorFB();
-                    setsizeFB.SimulatorFB(depth,width);
+                    SimulatorFB setFB = new SimulatorFB();
+                    setFB.SimulatorFB(depth,width);
                     break;
                 case 7:
-                    SimulatorFH setsizeFH = new SimulatorFH();
-                    setsizeFH.SimulatorFH(depth,width);
+                    SimulatorFH setFH = new SimulatorFH();
+                    setFH.SimulatorFH(depth,width);
                     break;
                 case 8:
-                    SimulatorWB setsizeWB = new SimulatorWB();
-                    setsizeWB.SimulatorWB(depth,width);
+                    SimulatorWB setWB = new SimulatorWB();
+                    setWB.SimulatorWB(depth,width);
                     break;
                 case 9:
-                    SimulatorWH setsizeWH = new SimulatorWH();
-                    setsizeWH.SimulatorWH(depth,width);
+                    SimulatorWH setWH = new SimulatorWH();
+                    setWH.SimulatorWH(depth,width);
                     break;
                 case 10:
-                    SimulatorBH setsizeBH = new SimulatorBH();
-                    setsizeBH.SimulatorBH(depth,width);
+                    SimulatorBH setBH = new SimulatorBH();
+                    setBH.SimulatorBH(depth,width);
                     break;
                 case 11:
-                    SimulatorRFW setsizeRFW = new SimulatorRFW();
-                    setsizeRFW.SimulatorRFW(depth,width);
+                    SimulatorRFW setRFW = new SimulatorRFW();
+                    setRFW.SimulatorRFW(depth,width);
                     break;
                 case 12:
-                    SimulatorRFB setsizeRFB = new SimulatorRFB();
-                    setsizeRFB.SimulatorRFB(depth,width);
+                    SimulatorRFB setRFB = new SimulatorRFB();
+                    setRFB.SimulatorRFB(depth,width);
                     break;
                 case 13:
-                    SimulatorRFH setsizeRFH = new SimulatorRFH();
-                    setsizeRFH.SimulatorRFH(depth,width);
+                    SimulatorRFH setRFH = new SimulatorRFH();
+                    setRFH.SimulatorRFH(depth,width);
                     break;
                 case 14:
-                    SimulatorRWB setsizeRWB = new SimulatorRWB();
-                    setsizeRWB.SimulatorRWB(depth,width);
+                    SimulatorRWB setRWB = new SimulatorRWB();
+                    setRWB.SimulatorRWB(depth,width);
                     break;
                 case 15:
-                    SimulatorRWH setsizeRWH = new SimulatorRWH();
-                    setsizeRWH.SimulatorRWH(depth,width);
+                    SimulatorRWH setRWH = new SimulatorRWH();
+                    setRWH.SimulatorRWH(depth,width);
                     break;
                 case 16:
-                    SimulatorRBH setsizeRBH = new SimulatorRBH();
-                    setsizeRBH.SimulatorRBH(depth,width);
+                    SimulatorRBH setRBH = new SimulatorRBH();
+                    setRBH.SimulatorRBH(depth,width);
                     break;
                 case 17:
-                    SimulatorFWB setsizeFWB = new SimulatorFWB();
-                    setsizeFWB.SimulatorFWB(depth,width);
+                    SimulatorFWB setFWB = new SimulatorFWB();
+                    setFWB.SimulatorFWB(depth,width);
                     break;
                 case 18:
-                    SimulatorFWH setsizeFWH = new SimulatorFWH();
-                    setsizeFWH.SimulatorFWH(depth,width);
+                    SimulatorFWH setFWH = new SimulatorFWH();
+                    setFWH.SimulatorFWH(depth,width);
                     break;
                 case 19:
-                    SimulatorFBH setsizeFBH = new SimulatorFBH();
-                    setsizeFBH.SimulatorFBH(depth,width);
+                    SimulatorFBH setFBH = new SimulatorFBH();
+                    setFBH.SimulatorFBH(depth,width);
                     break;
                 case 20:
-                    SimulatorWBH setsizeWBH = new SimulatorWBH();
-                    setsizeWBH.SimulatorWBH(depth,width);
+                    SimulatorWBH setWBH = new SimulatorWBH();
+                    setWBH.SimulatorWBH(depth,width);
                     break;
                 case 21:
-                    SimulatorRFWB setsizeRFWB = new SimulatorRFWB();
-                    setsizeRFWB.SimulatorRFWB(depth,width);
+                    SimulatorRFWB setRFWB = new SimulatorRFWB();
+                    setRFWB.SimulatorRFWB(depth,width);
                     break;
                 case 22:
-                    SimulatorRFWH setsizeRFWH = new SimulatorRFWH();
-                    setsizeRFWH.SimulatorRFWH(depth,width);
+                    SimulatorRFWH setRFWH = new SimulatorRFWH();
+                    setRFWH.SimulatorRFWH(depth,width);
                     break;
                 case 23:
-                    SimulatorRFBH setsizeRFBH = new SimulatorRFBH();
-                    setsizeRFBH.SimulatorRFBH(depth,width);
+                    SimulatorRFBH setRFBH = new SimulatorRFBH();
+                    setRFBH.SimulatorRFBH(depth,width);
                     break;
                 case 24:
-                    SimulatorRWBH setsizeRWBH = new SimulatorRWBH();
-                    setsizeRWBH.SimulatorRWBH(depth,width);
+                    SimulatorRWBH setRWBH = new SimulatorRWBH();
+                    setRWBH.SimulatorRWBH(depth,width);
                     break;
                 case 25:
-                    SimulatorFWBH setsizeFWBH = new SimulatorFWBH();
-                    setsizeFWBH.SimulatorFWBH(depth,width);
+                    SimulatorFWBH setFWBH = new SimulatorFWBH();
+                    setFWBH.SimulatorFWBH(depth,width);
                     break;
             }  
-            
             reset_butt.setEnabled(true);
             nextstep_butt.setEnabled(true);
             longstep_butt.setEnabled(true);
         }
     }      
-    private class ResetbuttHandler implements ActionListener{
+    private class SimulateOption implements ActionListener{//Generate field
         public void actionPerformed(ActionEvent e){
-            simulator = new Simulator();
-            Simulator reseting = new Simulator();
-            reseting.reset();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
-                             //Cannot invoke "java.util.List.clear()" because "this.animals" is null
+            switch(version) {
+                case 0:
+                    Simulator set = new Simulator();
+                    set.Simulator(depth,width);
+                    if(e.getSource() == reset_butt){
+                        set.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        set.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        set.runLongSimulation();
+                    }
+                    break;
+                case 1:
+                    SimulatorRF setRF = new SimulatorRF();
+                    setRF.SimulatorRF(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRF.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRF.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRF.runLongSimulation();
+                    }
+                    break;
+                case 2:
+                    SimulatorRW setRW = new SimulatorRW();
+                    setRW.SimulatorRW(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRW.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRW.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRW.runLongSimulation();
+                    }
+                    break;
+                case 3:
+                    SimulatorRB setRB = new SimulatorRB();
+                    setRB.SimulatorRB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRB.runLongSimulation();
+                    }
+                    break;
+                case 4:
+                    SimulatorRH setRH = new SimulatorRH();
+                    setRH.SimulatorRH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRH.runLongSimulation();
+                    }
+                    break;
+                case 5:
+                    SimulatorFW setFW = new SimulatorFW();
+                    setFW.SimulatorFW(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFW.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFW.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFW.runLongSimulation();
+                    }
+                    break;
+                case 6:
+                    SimulatorFB setFB = new SimulatorFB();
+                    setFB.SimulatorFB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFB.runLongSimulation();
+                    }
+                    break;
+                case 7:
+                    SimulatorFH setFH = new SimulatorFH();
+                    setFH.SimulatorFH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFH.runLongSimulation();
+                    }
+                    break;
+                case 8:
+                    SimulatorWB setWB = new SimulatorWB();
+                    setWB.SimulatorWB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setWB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setWB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setWB.runLongSimulation();
+                    }
+                    break;
+                case 9:
+                    SimulatorWH setWH = new SimulatorWH();
+                    setWH.SimulatorWH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setWH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setWH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setWH.runLongSimulation();
+                    }
+                    break;
+                case 10:
+                    SimulatorBH setBH = new SimulatorBH();
+                    setBH.SimulatorBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setBH.runLongSimulation();
+                    }
+                    break;
+                case 11:
+                    SimulatorRFW setRFW = new SimulatorRFW();
+                    setRFW.SimulatorRFW(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFW.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFW.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFW.runLongSimulation();
+                    }
+                    break;
+                case 12:
+                    SimulatorRFB setRFB = new SimulatorRFB();
+                    setRFB.SimulatorRFB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFB.runLongSimulation();
+                    }
+                    break;
+                case 13:
+                    SimulatorRFH setRFH = new SimulatorRFH();
+                    setRFH.SimulatorRFH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFH.runLongSimulation();
+                    }
+                    break;
+                case 14:
+                    SimulatorRWB setRWB = new SimulatorRWB();
+                    setRWB.SimulatorRWB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRWB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRWB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRWB.runLongSimulation();
+                    }
+                    break;
+                case 15:
+                    SimulatorRWH setRWH = new SimulatorRWH();
+                    setRWH.SimulatorRWH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRWH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRWH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRWH.runLongSimulation();
+                    }
+                    break;
+                case 16:
+                    SimulatorRBH setRBH = new SimulatorRBH();
+                    setRBH.SimulatorRBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRBH.runLongSimulation();
+                    }
+                    break;
+                case 17:
+                    SimulatorFWB setFWB = new SimulatorFWB();
+                    setFWB.SimulatorFWB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFWB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFWB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFWB.runLongSimulation();
+                    }
+                    break;
+                case 18:
+                    SimulatorFWH setFWH = new SimulatorFWH();
+                    setFWH.SimulatorFWH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFWH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFWH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFWH.runLongSimulation();
+                    }
+                    break;
+                case 19:
+                    SimulatorFBH setFBH = new SimulatorFBH();
+                    setFBH.SimulatorFBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFBH.runLongSimulation();
+                    }
+                    break;
+                case 20:
+                    SimulatorWBH setWBH = new SimulatorWBH();
+                    setWBH.SimulatorWBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setWBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setWBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setWBH.runLongSimulation();
+                    }
+                    break;
+                case 21:
+                    SimulatorRFWB setRFWB = new SimulatorRFWB();
+                    setRFWB.SimulatorRFWB(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFWB.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFWB.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFWB.runLongSimulation();
+                    }
+                    break;
+                case 22:
+                    SimulatorRFWH setRFWH = new SimulatorRFWH();
+                    setRFWH.SimulatorRFWH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFWH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFWH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFWH.runLongSimulation();
+                    }
+                    break;
+                case 23:
+                    SimulatorRFBH setRFBH = new SimulatorRFBH();
+                    setRFBH.SimulatorRFBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRFBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRFBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRFBH.runLongSimulation();
+                    }
+                    break;
+                case 24:
+                    SimulatorRWBH setRWBH = new SimulatorRWBH();
+                    setRWBH.SimulatorRWBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setRWBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setRWBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setRWBH.runLongSimulation();
+                    }
+                    break;
+                case 25:
+                    SimulatorFWBH setFWBH = new SimulatorFWBH();
+                    setFWBH.SimulatorFWBH(depth,width);
+                    if(e.getSource() == reset_butt){
+                        setFWBH.reset();
+                    }
+                    else if(e.getSource() == nextstep_butt){
+                        setFWBH.simulateOneStep();
+                    }
+                    else if(e.getSource() == longstep_butt){
+                        setFWBH.runLongSimulation();
+                    }
+                    break;
+            }  
+            reset_butt.setEnabled(true);
+            nextstep_butt.setEnabled(true);
+            longstep_butt.setEnabled(true);
         }
-    }   
-    private class NextstepbuttHandler implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            simulator = new Simulator();
-            Simulator onestep = new Simulator();
-            onestep.simulateOneStep();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
-        }
-    }
-    private class LongstepbuttHandler implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            simulator = new Simulator();
-            Simulator longstep = new Simulator();
-            longstep.runLongSimulation();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
-        }
-    }
+    }      
+    //private class ResetbuttHandler implements ActionListener{
+    //    public void actionPerformed(ActionEvent e){
+    //        Simulator reseting = new Simulator();
+    //        reseting.reset();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
+    //                         //Cannot invoke "java.util.List.clear()" because "this.animals" is null
+    //    }
+    //}   
+    //private class NextstepbuttHandler implements ActionListener{
+    //    public void actionPerformed(ActionEvent e){
+    //        Simulator onestep = new Simulator();
+    //        onestep.simulateOneStep();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
+    //                                  //Cannot invoke "java.util.List.iterator()" because "this.animals" is null
+    //    }
+    //}
+    //private class LongstepbuttHandler implements ActionListener{
+    //    public void actionPerformed(ActionEvent e){
+    //        Simulator longstep = new Simulator();
+    //        longstep.runLongSimulation();//*Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException:
+    //                                     //Cannot invoke "SimulatorView.isViable(Field)" because "this.view" is null
+    //    }
+    //}
 }
 
