@@ -22,11 +22,7 @@ public class GenerateCsv{
             writer.append(',');
             writer.append("Hunters");
             writer.append('\n');
-            //FieldStats fieldstats = new FieldStats();
-            //Field field = new Field(depth,width);
-            //writer.append(fieldstats.getPopulationDetails() + "");
             
-            //fieldstats = new FieldStats();
             
 
             writer.flush();
