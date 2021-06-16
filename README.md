@@ -10,4 +10,4 @@ It allows user to select which simulation(species involved) they want to do, set
 
 * Only show the result after certain steps(with default steps or typed steps), CAN'T SHOW THE PROGRESS DURING SIMULATION.
 
-*It is based on the project "foxes-and-rabbits-v2" by David J. Barnes and Michael Kolling.
+*It's extension of the project "foxes-and-rabbits-v2" by David J. Barnes and Michael Kolling.
